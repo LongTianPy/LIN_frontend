@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <script type="text/javascript">
+      function getInterestID() {
+        var Interest_ID = "<?php echo $_GET['Interest_ID'];?>";
+      }
+    </script>
+  </head>
+  <body onload = "getInterestID();">
+  	<form action = "uploadClient.php" method = "post">
+  	  <div>
+  	    <p><?php echo $_GET['Attribute_0'];?></p>
+  	    <input id = "Attribute_1" type = "text">
+      </div>
+      <div>
+  	    <p><?php echo $_GET['Attribute_1'];?></p>
+  	    <input id = "Attribute_2" type = "text">
+      </div>
+      <div>
+  	    <p><?php echo $_GET['Attribute_2'];?></p>
+  	    <input id = "Attribute_3" type = "text">
+      <div>
+        <p>File Path</p>
+        <input id = "file_select" type = "file" accept = ".fasta">
+      </div>
+      <div>
+        <br>
+        <input id = "submit" type = "submit" value = "submit">
+      </div>
+  	</form>
+  </body>
+</html>

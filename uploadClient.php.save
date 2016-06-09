@@ -1,0 +1,98 @@
+<?php
+    $servername = "128.173.74.68";
+    $username = "linproject";
+    $password = "tcejorpnil";
+    $db_name = "LINdb_zika";
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $db_name);
+
+    // Check connection
+    if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "SELECT COUNT(*) FROM Submission";
+    $result = $conn->query($sql);
+    $Submission_ID = $result->fetch_assoc()["COUNT(*)"] + 1;
+
+    $sql = "SELECT COUNT(*) FROM Genome";
+    $result = $conn->query($sql);
+    $Genome_ID = $result->fetch_assoc()["COUNT(*)"] + 1;
+
+
+    $file = $_FILES['file']['name'];
+    $type = $_FILES['file']['size'];
+    $temp = $_FILES['file']['tmp_name'];
+    $size = $_FILES['file']['size'];
+
+    $name = explode('.', $file)[0];
+
+
+    $fileDest = '/home/linproject/Workspace/Zika/';
+
+
+   if(move_uploaded_file($temp, $fileDest.$file)) {
+       echo "inserted.";
+       $servername = "128.173.74.68";
+       $username = "linproject";
+       $password = "tcejorpnil";
+       $db_name = "LINdb_zika";
+
+       // Create connection
+       $conn = new mysqli($servername, $username, $password, $db_name);
+
+       // Check connection
+       if ($conn->connect_error) {
+         die("Connection failed: " . $conn->connect_error);
+       }
+
+       session_start();
+       $Interest_ID =  $_SESSION["Interest_ID"];
+
+	$sql = "SELECT COUNT(*) FROM Submission";
+        $result = $conn->query($sql);
+        $Submission_ID = $result->fetch_assoc()["COUNT(*)"] + 1;
+   }
+$sql = 'INSERT INTO Submission (Submission_ID, User_ID, Time) VALUES (DEFAULT, "'.$_SESSION['User_ID'].'", "'.date("Y-m-d H:i:s").'")';
+ //  $sql = 'INSERT INTO Submission (Submission_ID, User_ID, Time) VALUES ("'.$Submission_ID.'", "'.$_SESSION['User_ID'].'", "'.date("Y-m-d H:i:s").'")';
+        $conn->query($sql);
+//	$sql = "SELECT COUNT(*) FROM Genome";
+//        $result = $conn->query($sql);
+//	$Genome_ID = $result->fetch_assoc()["COUNT(*)"] + 1;
+
+
+//       $sql = "INSERT INTO Genome (Genome_ID, Interest_ID, Submission_ID, FilePath) VALUES
+//          ('$Genome_ID', '$Interest_ID', '$Submission_ID', '$fileDest$file')";
+
+//       chdir("../../../..");
+//       chdir("/home/linproject/Projects/LIN_proto");	
+	echo getcwd();
+
+       
+//       $file = fopen("/home/linproject/Workspace/Zika/Attribute_full.csv", "a+");
+//       $line = array("", "", "[date]", "[Virus]", "Zika", $name, "[Country]", "Microcephaly", "Homo Sapiens");
+//       echo $line[5];
+//       fputcsv($file, $line);
+//       fclose($file);
+
+	$cmd = 'python ~/Projects/LIN_proto/workflow.py '.$file.' 2>&1';
+//	echo $cmd;
+	
+//	$out = shell_exec($cmd);
+//	echo $out;
+//	$out = shell_exec('ls');
+//	echo $out;
+//	$starttime = microtime(true);
+//	echo exec($cmd, $out, $err);
+//	$endtime = microtime(true);
+//	echo $endtime - $starttime;
+//	var_dump($err);
+	$sql = 'select * from Genome where GenomeName = "'.$name.'"';
+	$result = $conn->query($sql);
+	
+
+
+	echo $sql;
+
+
+?>

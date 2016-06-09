@@ -1,0 +1,90 @@
+<?php
+  $error_message = "";
+  $num_nulls = 0;
+
+  $servername = "128.173.74.68";
+  $username = "linproject";
+  $password = "tcejorpnil";
+  $db_name = "LINdb_test_Psy";	
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $db_name);
+
+    // Check connection
+    if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+    }
+
+
+    $user_lastname = $_POST['user_lastname'];
+    $user_firstname = $_POST['user_firstname'];
+    $user_institute = $_POST['user_institute'];
+    $user_userName = $_POST['user_userName'];
+    $user_password1 = $_POST['user_password1'];
+    $user_password2 = $_POST['user_password2'];
+
+    /** Checks if the password has been entered
+   *  correctly. Password must be at least
+   *  seven (7) characters.
+   */
+  function password_validate($password1, $password2) {
+    $message = "";
+    if($password1 == null) {
+      $message .= "Password field empty. ";
+    }
+    if($password2 == null) {
+      $message .= "Password confirmation field empty. ";
+    }
+    if(strlen($password1) <= 7) {
+      $message .= "Password needs to be at least 7 characters long. ";
+    }
+    if(strcmp($password1, $password2) != 0) {
+      $message .= "Password confirmation does not match. ";
+    }
+    return $message;
+  }
+
+
+    if($user_firstname == null) {
+      $error_message .= "First name field empty. ";
+    }
+
+    if($user_lastname == null) {
+      $error_message .= "Last name field empty. ";
+    }
+
+    if($user_institute == null) {
+      $error_message .= "Institute field empty. ";
+    }
+
+    if($user_userName == null) {
+      $error_message .= "Username field empty. ";
+    }
+$sql = "SELECT COUNT(*) FROM User";
+$result = $conn->query($sql);
+$user_ID = $result->fetch_assoc()["COUNT(*)"] + 1;
+
+    $error_message .= password_validate($user_password1, $user_password2);
+
+    if(strlen($error_message) > 0) {
+      session_start();
+      $_SESSION['error_message_register'] = $error_message;
+      $error_message = "";
+      header('location:register.html');
+    }
+    else {
+      $time_stamp = date("Y/m/d");
+      $user_password = password_hash($user_password1, PASSWORD_BCRYPT, array('cost' => 10));    
+  $sql = "
+      INSERT INTO User (User_ID, LastName, FirstName,
+        Institute, RegistrationDate, Username, Password) VALUES ('$user_ID',
+        '$user_lastname', '$user_firstname', '$user_institute', '$time_stamp', '$user_userName', '$user_password')
+      ";
+      if ($conn->query($sql) === TRUE) {
+        $_SESSION['user_firstname'] = $user_firstname;
+        header('location:interest.php?user_firstname='.$user_firstname);
+      } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+      }
+?>
+

@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://cdn.wideskyhosting.com/js/jquery.validate.js"></script>
+    <script type = "text/javascript" src = "script.js"></script>
+    <script>
+	$(function() {
+	  $("#form").validate({
+	    rules: {
+	      username: {
+	        required: true, 
+		email: true
+	      },
+	      user_password: {
+		required: true
+	      }
+	    }
+	 });
+       });
+    </script>
+    <style>
+      .error {color: red}
+    </style>
+  </head>
+  <body>
+    <form id = "form" action = "loginClient.php" method = "post">
+      <h2>Welcome, please sign in</h2>
+      <div>
+        <header>Email:</header>
+        <input id = "username" type = "text" name = "username">
+        <br>
+      </div>
+      <br>
+      <div>
+        <header>Password:</header>
+        <input id = "user_password" type = "password" name = "user_password">
+        <br>
+      </div>
+      <br>
+      <div>
+        <input id = "submit" type = "submit" value = "submit" name = "submit">
+      </div>
+      <div>
+        <input id = "new_user" type = "button" value = "new user"
+        onclick = "location.href='register.html';">
+      </div>
+      <p style = "color: red"><?php session_start(); echo $_SESSION['error_message_login']; ?></p>
+      <br>
+    </form>
+  </body>
+</html>

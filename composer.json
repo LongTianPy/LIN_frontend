@@ -1,0 +1,7 @@
+{
+    "require": {
+        "rych/phpass": "3.0.*@beta",
+        "ircmaxell/password-compat": "^1.0"
+	"ircmaxell/password-compat": ">=1.0.*"
+    }
+}

@@ -1,0 +1,96 @@
+[
+    {
+        "name": "rych/phpass",
+        "version": "v3.0.0beta1",
+        "version_normalized": "3.0.0.0-beta1",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/rchouinard/phpass.git",
+            "reference": "f94d30f6ea9ead98ea9497818cbbb28db730ea7d"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/rchouinard/phpass/zipball/f94d30f6ea9ead98ea9497818cbbb28db730ea7d",
+            "reference": "f94d30f6ea9ead98ea9497818cbbb28db730ea7d",
+            "shasum": ""
+        },
+        "require": {
+            "ext-hash": "*",
+            "php": ">=5.3.8"
+        },
+        "suggest": {
+            "ext-mcrypt": "The Mcrypt extension is used as a source of cryptographically strong random data in the absence of ext-openssl.",
+            "ext-openssl": "The OpenSSL extension is used as the default source of cryptographically strong random data."
+        },
+        "time": "2012-08-14 03:45:21",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "PHPassLib": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Ryan Chouinard",
+                "email": "rchouinard@gmail.com",
+                "homepage": "http://ryanchouinard.com"
+            }
+        ],
+        "description": "PHP Password Library: Easy, secure password management for PHP",
+        "homepage": "https://github.com/rchouinard/phpass",
+        "keywords": [
+            "cryptography",
+            "password",
+            "security"
+        ]
+    },
+    {
+        "name": "ircmaxell/password-compat",
+        "version": "v1.0.4",
+        "version_normalized": "1.0.4.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ircmaxell/password_compat.git",
+            "reference": "5c5cde8822a69545767f7c7f3058cb15ff84614c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ircmaxell/password_compat/zipball/5c5cde8822a69545767f7c7f3058cb15ff84614c",
+            "reference": "5c5cde8822a69545767f7c7f3058cb15ff84614c",
+            "shasum": ""
+        },
+        "require-dev": {
+            "phpunit/phpunit": "4.*"
+        },
+        "time": "2014-11-20 16:49:30",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "lib/password.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Anthony Ferrara",
+                "email": "ircmaxell@php.net",
+                "homepage": "http://blog.ircmaxell.com"
+            }
+        ],
+        "description": "A compatibility library for the proposed simplified password hashing algorithm: https://wiki.php.net/rfc/password_hash",
+        "homepage": "https://github.com/ircmaxell/password_compat",
+        "keywords": [
+            "hashing",
+            "password"
+        ]
+    }
+]

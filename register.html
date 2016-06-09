@@ -1,0 +1,111 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://cdn.wideskyhosting.com/js/jquery.validate.js"></script>
+    <script type = "text/javascript" src = "script.js"></script>
+    <script>
+      $(function() {
+        $("#form").validate({
+	  rules: {
+	    user_userName: {
+	      required: true,
+	      email: true
+	    },
+	    user_firstname: { 
+              required:	true,
+	      maxlength: 255
+            },
+	    user_lastname: { 
+              required:	true,
+	      maxlength: 255
+            },
+	    user_institute: { 
+              required:	true,
+	      maxlength: 255
+            },
+	    user_password1: { 
+              required:	true,
+	      minlength: 7
+            },
+	    user_password2: { 
+              required:	true,
+            }
+	  },
+	  messages: {
+	    user_userName: {
+	      required: "Please enter a valid email address.",
+	      email: "Please enter a valid email address."
+	    },
+	    user_firstname: {
+	      required: "Please enter your first name.",
+	      maxlength: "Please enter a reasonable lengthed name."
+            },
+	    user_lastname: {
+	      required: "Please enter your last name.",
+              maxlength: "Please enter a reasonable lengthed name." 	      
+            },
+	    user_institute: {
+	      required: "Please enter your institute.",
+	      maxlength: "Please enter a reasonable lengthed institute name."
+            },
+	    user_password1: {
+	      required: "Please enter a password.",
+	      minlength: "Please enter a password at least 7 characters long."
+            },
+	    user_password2: {
+	      required: "Please confirm your  password.",
+            }
+	  }
+   	});
+      });
+    </script>
+    <style>
+      .error {color: red} 
+    </style>
+  </head>
+  <body onload = "display_error_message();">
+    <form id = "form" action = "registerClient.php" method = "post">
+  	 <h2>Welcome, new user</h2>
+     <div>
+       <header>Email:</header>
+        <input id = "user_userName" type = "text" name = "user_userName">
+        <br>
+      </div>
+      <br>
+  	 <div>
+       <header>First:</header>
+        <input id = "user_firstname" type = "text" name = "user_firstname">
+        <br>
+      </div>
+      <br>
+  	 <div>
+        <header>Last:</header>
+        <input id = "user_lastname" type = "text" name = "user_lastname">
+        <br>
+     </div>
+     <br>
+     <div>
+       <header>Institute:</header>
+       <input id = "user_institute" type = "text" name = "user_institute">
+       <br>
+     </div>
+     <br>
+     <div>
+       <header>Choose Password:</header>
+       <input id = "user_password1" type = "password" name = "user_password1">
+       <br>
+     </div>
+     <br>
+     <div>
+       <header>Confirm Password:</header>
+       <input id = "user_password2" type = "password" name = "user_password2">
+       <br>
+     </div>
+     <br>
+     <div>
+       <input id = "submit" type = "submit" value = "submit">
+     </div>
+   </body>
+  </form>
+  <p id = "error_message" style = "color: red;"></p>
+</html>
